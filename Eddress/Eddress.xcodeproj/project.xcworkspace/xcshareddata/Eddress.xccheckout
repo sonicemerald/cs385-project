@@ -10,22 +10,26 @@
 	<string>Eddress</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>C1D95CF28135AED7ECBC1CEB1023459FFCCA5F27</key>
+		<string>https://github.com/sonicemerald/cs385-project.git</string>
 		<key>D9674950-12C5-409F-AC1B-75F7C7EC7E1A</key>
 		<string>https://github.com/sonicemerald/cs385-project.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Eddress/Eddress.xcodeproj/project.xcworkspace</string>
+	<string>Eddress/Eddress.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D9674950-12C5-409F-AC1B-75F7C7EC7E1A</key>
+		<key>C1D95CF28135AED7ECBC1CEB1023459FFCCA5F27</key>
 		<string>../../..</string>
+		<key>D9674950-12C5-409F-AC1B-75F7C7EC7E1A</key>
+		<string>../../../../cs385-project</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/sonicemerald/cs385-project.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D9674950-12C5-409F-AC1B-75F7C7EC7E1A</string>
+	<string>C1D95CF28135AED7ECBC1CEB1023459FFCCA5F27</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>D9674950-12C5-409F-AC1B-75F7C7EC7E1A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cs385-project</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C1D95CF28135AED7ECBC1CEB1023459FFCCA5F27</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Jeff</string>
 		</dict>
 	</array>
 </dict>
