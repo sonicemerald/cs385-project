@@ -13,7 +13,9 @@
 @property (nonatomic) UISegmentedControl *mapTypeSegCtl;
 @property (nonatomic) UISegmentedControl *mapLocationSegCtl;
 @property (nonatomic) MKMapView *mapView;
-@property (nonatomic) CLLocationManager *locationManager;
+//@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSString *latitude;
+@property (nonatomic) NSString *longitude;
 
 -(void) setMapType: (id) sender;
 -(void) setMapLocation: (id) sender;
@@ -25,8 +27,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /*CoreLocation Stuff
+    //CoreLocation Stuff
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 10;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    [locationManager startUpdatingLocation];
+    /*
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
@@ -41,20 +51,52 @@
     
     self.mapView.mapType = MKMapTypeStandard;
     // Do any additional setup after loading the view.
-    /*
+/*
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = self.locationManager.location.coordinate.latitude;
-    newRegion.center.longitude = self.locationManager.location.coordinate.longitude;
+    newRegion.center.latitude = [self.latitude doubleValue];
+    newRegion.center.longitude = [self.longitude doubleValue];
     newRegion.span.latitudeDelta = 0.0004;
     newRegion.span.longitudeDelta = 0.005411;
-     
-    NSLog(@"latitude: %f", self.locationManager.location.coordinate.latitude);
-    NSLog(@"longitude: %f", self.locationManager.location.coordinate.longitude);
-    CoreLocationAnnotation *coreAnnotation = [[CoreLocationAnnotation alloc] init];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([coreAnnotation coordinate], 0, 0);
-    [self.mapView addAnnotation: coreAnnotation];
+    [self.mapView setRegion:newRegion];
+*/
+    /*
+    newRegion.center.latitude = self->locationManager.location.coordinate.latitude;
+    newRegion.center.longitude = self->locationManager.location.coordinate.longitude;
+    newRegion.span.latitudeDelta = 0.0004;
+    newRegion.span.longitudeDelta = 0.005411;
+     */
+    /*
+    NSLog(@"latitude: %f", self->locationManager.location.coordinate.latitude);
+    NSLog(@"longitude: %f", self->locationManager.location.coordinate.longitude);
+     */
+    //CoreLocationAnnotation *coreAnnotation = [[CoreLocationAnnotation alloc] init];
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([coreAnnotation coordinate], 0, 0);
+    //[self.mapView addAnnotation: coreAnnotation];
 
-    [self.mapView setRegion:region animated:YES];*/
+    //[self.mapView setRegion:region animated:YES];
+}
+
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
+    UIAlertView *errorAltert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAltert show];
+    NSLog(@"Error: %@", error.description);
+}
+
+-(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    NSLog(@"didUpdateLocaiton");
+    CLLocation *location = [locations lastObject];
+    self.latitude = [NSString stringWithFormat:@"%.8f", location.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%.8f", location.coordinate.longitude];
+    NSLog(@"lat:%@", self.latitude);
+    NSLog(@"long:%@", self.longitude);
+    
+    MKCoordinateRegion newRegion;
+    newRegion.center.latitude = [self.latitude doubleValue];
+    newRegion.center.longitude = [self.longitude doubleValue];
+    newRegion.span.latitudeDelta = 1.75;
+    newRegion.span.longitudeDelta = 1.75;
+    [self.mapView setRegion:newRegion];
 }
 
 -(UISegmentedControl *) makeSegmentedControl:(NSArray *)labels withY:(NSInteger)yValue
