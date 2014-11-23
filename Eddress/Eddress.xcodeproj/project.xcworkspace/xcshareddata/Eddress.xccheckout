@@ -14,7 +14,7 @@
 		<string>https://github.com/sonicemerald/cs385-project.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Eddress/Eddress.xcodeproj/project.xcworkspace</string>
+	<string>Eddress/Eddress.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C1D95CF28135AED7ECBC1CEB1023459FFCCA5F27</key>
