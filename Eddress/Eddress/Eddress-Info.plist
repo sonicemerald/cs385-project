@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>The spirit of stack overflow is coders helping coders</string>
+    <string></string>
     
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>I have learned more on stack overflow than anything else</string>
+    <string></string>
     
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

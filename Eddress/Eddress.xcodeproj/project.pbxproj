@@ -21,7 +21,6 @@
 		3F54B2301A113EA9001B8B21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F54B20F1A113EA9001B8B21 /* UIKit.framework */; };
 		3F54B2381A113EA9001B8B21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F54B2361A113EA9001B8B21 /* InfoPlist.strings */; };
 		3F54B23A1A113EA9001B8B21 /* EddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F54B2391A113EA9001B8B21 /* EddressTests.m */; };
-		3FDE0A701A1EB9AA0053354E /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE0A5D1A1EB9AA0053354E /* AddLocationViewController.m */; };
 		3FDE0A711A1EB9AA0053354E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE0A5F1A1EB9AA0053354E /* AppDelegate.m */; };
 		3FDE0A721A1EB9AA0053354E /* DownloadAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE0A611A1EB9AA0053354E /* DownloadAssistant.m */; };
 		3FDE0A731A1EB9AA0053354E /* FavoritesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE0A631A1EB9AA0053354E /* FavoritesDataSource.m */; };
@@ -67,8 +66,6 @@
 		3F54B2351A113EA9001B8B21 /* EddressTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EddressTests-Info.plist"; sourceTree = "<group>"; };
 		3F54B2371A113EA9001B8B21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F54B2391A113EA9001B8B21 /* EddressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EddressTests.m; sourceTree = "<group>"; };
-		3FDE0A5C1A1EB9AA0053354E /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
-		3FDE0A5D1A1EB9AA0053354E /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		3FDE0A5E1A1EB9AA0053354E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3FDE0A5F1A1EB9AA0053354E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3FDE0A601A1EB9AA0053354E /* DownloadAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadAssistant.h; sourceTree = "<group>"; };
@@ -157,8 +154,6 @@
 		3F54B2111A113EA9001B8B21 /* Eddress */ = {
 			isa = PBXGroup;
 			children = (
-				3FDE0A5C1A1EB9AA0053354E /* AddLocationViewController.h */,
-				3FDE0A5D1A1EB9AA0053354E /* AddLocationViewController.m */,
 				3FDE0A5E1A1EB9AA0053354E /* AppDelegate.h */,
 				3FDE0A5F1A1EB9AA0053354E /* AppDelegate.m */,
 				3FDE0A601A1EB9AA0053354E /* DownloadAssistant.h */,
@@ -320,7 +315,6 @@
 			files = (
 				3FDE0A791A1EB9AA0053354E /* QuickAddViewController.m in Sources */,
 				3FDE0A711A1EB9AA0053354E /* AppDelegate.m in Sources */,
-				3FDE0A701A1EB9AA0053354E /* AddLocationViewController.m in Sources */,
 				3F54B2251A113EA9001B8B21 /* ViewController.m in Sources */,
 				3FDE0A761A1EB9AA0053354E /* MapViewController.m in Sources */,
 				3FDE0A771A1EB9AA0053354E /* PlacesDataSource.m in Sources */,

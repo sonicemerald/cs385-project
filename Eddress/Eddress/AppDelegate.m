@@ -10,7 +10,6 @@
 #import "MapViewController.h"
 #import "FavoritesTableViewController.h"
 #import "PlacesTableViewController.h"
-#import "AddLocationViewController.h"
 
 @interface AppDelegate()
 
@@ -24,18 +23,15 @@
     MapViewController *mvc = [[MapViewController alloc] init];
     FavoritesTableViewController *fvc = [[FavoritesTableViewController alloc] init];
     PlacesTableViewController *pvc = [[PlacesTableViewController alloc] init];
-    AddLocationViewController *alvc = [[AddLocationViewController alloc] init];
     
     UITabBarController *tab = [[UITabBarController alloc] init];
     UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:mvc];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:fvc];
     UINavigationController *nc3 = [[UINavigationController alloc] initWithRootViewController:pvc];
-    UINavigationController *nc4 = [[UINavigationController alloc] initWithRootViewController:alvc];
     
     [tab addChildViewController:nc1];
     [tab addChildViewController:nc2];
     [tab addChildViewController:nc3];
-    [tab addChildViewController:nc4];
     
     UIImage *imageMap = [UIImage imageNamed:@"map.png"];
     UITabBarItem *firstItem = [[UITabBarItem alloc] initWithTitle:@"Map" image:imageMap selectedImage:imageMap];
@@ -49,9 +45,6 @@
     UITabBarItem *thirdItem = [[UITabBarItem alloc] initWithTitle:@"Address Book" image:imagePlaces selectedImage:imagePlaces];
     pvc.tabBarItem = thirdItem;
     
-    UIImage *imageAddLocation = [UIImage imageNamed:@"plus.png"];
-    UITabBarItem *fourthItem = [[UITabBarItem alloc] initWithTitle:@"Add Location" image:imageAddLocation selectedImage:imageAddLocation];
-    alvc.tabBarItem = fourthItem;
     
     [self.window setRootViewController:tab];
     return YES;
