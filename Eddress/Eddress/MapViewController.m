@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import "CustomAnnotation.h"
 #import "FMDatabase.h"
+#import "QuickAddViewController.h"
 
 @interface MapViewController ()
 
@@ -17,6 +18,7 @@
 @property (nonatomic) MKMapView *mapView;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
+@property (nonatomic) QuickAddViewController *quickAdd;
 
 
 -(void) setMapType: (id) sender;
@@ -64,6 +66,47 @@
     //execute the query
     [db executeUpdate:sql];
     [db close];
+}
+
+- (void)callQuickAdd:(id)sender
+{
+    NSLog(@"You are here");
+    self.quickAdd = [[QuickAddViewController alloc] init];
+    [self.navigationController pushViewController:self.quickAdd animated:YES];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    static int i = 0;
+    NSString *reuseID = [NSString stringWithFormat: @"pinAnnotation%d", i];
+    i++;
+    MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+    [self.mapView dequeueReusableAnnotationViewWithIdentifier: reuseID];
+    
+    if( ! pinView ) {
+        pinView = [[MKPinAnnotationView alloc]
+                   initWithAnnotation:annotation reuseIdentifier: reuseID];
+        if( [annotation isKindOfClass:[CustomAnnotation class]] )
+            pinView.pinColor = MKPinAnnotationColorGreen; // pin color and other configurations.
+        else
+            pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.animatesDrop = NO;
+        pinView.canShowCallout = YES;
+        if( [annotation isKindOfClass: [CustomAnnotation class]] ) {  // call quick add
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self
+                            action:@selector(callQuickAdd:)
+                  forControlEvents:UIControlEventTouchUpInside];
+            pinView.rightCalloutAccessoryView = rightButton;
+            
+        }
+    } else {
+        pinView.annotation = annotation;
+    }
+    return pinView;
 }
 
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
