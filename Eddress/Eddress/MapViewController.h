@@ -12,6 +12,7 @@
 #import <MapKit/MKAnnotation.h>
 #import <MapKit/MKReverseGeocoder.h>
 #import <CoreLocation/CoreLocation.h>
+#import "FMDatabase.h"
 
 
 @interface MapViewController : UIViewController<CLLocationManagerDelegate,

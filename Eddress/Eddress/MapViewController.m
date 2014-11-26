@@ -7,15 +7,17 @@
 //
 
 #import "MapViewController.h"
+#import "CustomAnnotation.h"
+#import "FMDatabase.h"
 
 @interface MapViewController ()
 
 @property (nonatomic) UISegmentedControl *mapTypeSegCtl;
 @property (nonatomic) UISegmentedControl *mapLocationSegCtl;
 @property (nonatomic) MKMapView *mapView;
-//@property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
+
 
 -(void) setMapType: (id) sender;
 -(void) setMapLocation: (id) sender;
@@ -36,11 +38,7 @@
         [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
-    /*
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
-    [self.locationManager stopUpdatingLocation];*/
+
     
     //Map Stuff
     CGRect bounds = [[UIScreen mainScreen] applicationFrame];
@@ -50,30 +48,22 @@
     self.mapView.showsUserLocation = YES; //If set, will track location of device
     
     self.mapView.mapType = MKMapTypeStandard;
-    // Do any additional setup after loading the view.
-/*
-    MKCoordinateRegion newRegion;
-    newRegion.center.latitude = [self.latitude doubleValue];
-    newRegion.center.longitude = [self.longitude doubleValue];
-    newRegion.span.latitudeDelta = 0.0004;
-    newRegion.span.longitudeDelta = 0.005411;
-    [self.mapView setRegion:newRegion];
-*/
-    /*
-    newRegion.center.latitude = self->locationManager.location.coordinate.latitude;
-    newRegion.center.longitude = self->locationManager.location.coordinate.longitude;
-    newRegion.span.latitudeDelta = 0.0004;
-    newRegion.span.longitudeDelta = 0.005411;
-     */
-    /*
-    NSLog(@"latitude: %f", self->locationManager.location.coordinate.latitude);
-    NSLog(@"longitude: %f", self->locationManager.location.coordinate.longitude);
-     */
-    //CoreLocationAnnotation *coreAnnotation = [[CoreLocationAnnotation alloc] init];
-    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([coreAnnotation coordinate], 0, 0);
-    //[self.mapView addAnnotation: coreAnnotation];
 
-    //[self.mapView setRegion:region animated:YES];
+    
+    //Dadabase Stuff
+    
+    //Call the database
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    NSString *dir   = [paths objectAtIndex:0];
+    FMDatabase *db = [FMDatabase databaseWithPath:
+                      [dir stringByAppendingPathComponent:@"Location.db"]];
+    
+    //create the table
+    NSString *sql = @"CREATE TABLE IF NOT EXISTS Locations (id INTEGER PRIMARY KEY,title TXT, lat TEXT,long TEXT);";
+    [db open];
+    //execute the query
+    [db executeUpdate:sql];
+    [db close];
 }
 
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -94,10 +84,20 @@
     MKCoordinateRegion newRegion;
     newRegion.center.latitude = [self.latitude doubleValue];
     newRegion.center.longitude = [self.longitude doubleValue];
-    newRegion.span.latitudeDelta = 1.75;
-    newRegion.span.longitudeDelta = 1.75;
+    newRegion.span.latitudeDelta = 0.5;
+    newRegion.span.longitudeDelta = 0.5;
     [self.mapView setRegion:newRegion];
+
+
+    //Pin Stuff
+    CustomAnnotation *annotation = [[CustomAnnotation alloc] init];
+    annotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+    annotation.title = @"You are here!";
+    
+    [self.mapView addAnnotation:annotation];
 }
+
+
 
 -(UISegmentedControl *) makeSegmentedControl:(NSArray *)labels withY:(NSInteger)yValue
 {
