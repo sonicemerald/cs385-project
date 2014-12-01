@@ -13,12 +13,24 @@
 
 @interface AppDelegate()
 
+
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Database stuffs
+    self.databaseName = @"locations.db";
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDir = [documentPaths objectAtIndex:0];
+    self.databasePath = [documentDir stringByAppendingPathComponent:self.databaseName];
+    
+    [self createAndCheckDatabase];
+
+    
+    
     // Override point for customization after application launch.
     MapViewController *mvc = [[MapViewController alloc] init];
     FavoritesTableViewController *fvc = [[FavoritesTableViewController alloc] init];
@@ -54,6 +66,20 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+-(void) createAndCheckDatabase
+{
+    BOOL success;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    success = [fileManager fileExistsAtPath:self.databasePath];
+    
+    if(success) return;
+    
+    NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.databaseName];
+    
+    [fileManager copyItemAtPath:databasePathFromApp toPath:self.databasePath error:nil];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

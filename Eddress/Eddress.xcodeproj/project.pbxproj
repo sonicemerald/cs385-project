@@ -42,6 +42,8 @@
 		E8DC02801A23BE7D001AF38A /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DC02781A23BE7D001AF38A /* FMDatabasePool.m */; };
 		E8DC02811A23BE7D001AF38A /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DC027A1A23BE7D001AF38A /* FMDatabaseQueue.m */; };
 		E8DC02821A23BE7D001AF38A /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DC027D1A23BE7D001AF38A /* FMResultSet.m */; };
+		E8E917B51A2CD1EC00A41CDB /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E917B41A2CD1EC00A41CDB /* Utility.m */; };
+		E8E917B91A2CD28700A41CDB /* FMDBDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E917B81A2CD28700A41CDB /* FMDBDataAccess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,11 @@
 		E8DC027B1A23BE7D001AF38A /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		E8DC027C1A23BE7D001AF38A /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		E8DC027D1A23BE7D001AF38A /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		E8E917B31A2CD1EC00A41CDB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		E8E917B41A2CD1EC00A41CDB /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		E8E917B71A2CD28700A41CDB /* FMDBDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBDataAccess.h; sourceTree = "<group>"; };
+		E8E917B81A2CD28700A41CDB /* FMDBDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBDataAccess.m; sourceTree = "<group>"; };
+		E8E917BB1A2CE53200A41CDB /* locations.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = locations.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +152,9 @@
 				3FF631B91A1EB8A200DBF778 /* map.png */,
 				3FF631BA1A1EB8A200DBF778 /* places.png */,
 				3FF631BB1A1EB8A200DBF778 /* plus.png */,
+				E8E917BA1A2CD29100A41CDB /* Services */,
 				E824A7061A255A0500B14463 /* FMDB */,
+				E8E917B61A2CD20100A41CDB /* Utilities */,
 				3F54B2111A113EA9001B8B21 /* Eddress */,
 				3F54B2331A113EA9001B8B21 /* EddressTests */,
 				3F54B20A1A113EA9001B8B21 /* Frameworks */,
@@ -211,6 +220,7 @@
 		3F54B2121A113EA9001B8B21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E8E917BB1A2CE53200A41CDB /* locations.db */,
 				3F54B2131A113EA9001B8B21 /* Eddress-Info.plist */,
 				3F54B2141A113EA9001B8B21 /* InfoPlist.strings */,
 				3F54B2171A113EA9001B8B21 /* main.m */,
@@ -254,6 +264,25 @@
 			);
 			name = FMDB;
 			path = Eddress;
+			sourceTree = "<group>";
+		};
+		E8E917B61A2CD20100A41CDB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E8E917B31A2CD1EC00A41CDB /* Utility.h */,
+				E8E917B41A2CD1EC00A41CDB /* Utility.m */,
+			);
+			name = Utilities;
+			path = Eddress;
+			sourceTree = "<group>";
+		};
+		E8E917BA1A2CD29100A41CDB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E8E917B71A2CD28700A41CDB /* FMDBDataAccess.h */,
+				E8E917B81A2CD28700A41CDB /* FMDBDataAccess.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,10 +391,12 @@
 				3FDE0A711A1EB9AA0053354E /* AppDelegate.m in Sources */,
 				3F54B2251A113EA9001B8B21 /* ViewController.m in Sources */,
 				E8DC027E1A23BE7D001AF38A /* FMDatabase.m in Sources */,
+				E8E917B91A2CD28700A41CDB /* FMDBDataAccess.m in Sources */,
 				3FDE0A761A1EB9AA0053354E /* MapViewController.m in Sources */,
 				E8DC02811A23BE7D001AF38A /* FMDatabaseQueue.m in Sources */,
 				E8DC02821A23BE7D001AF38A /* FMResultSet.m in Sources */,
 				3FDE0A771A1EB9AA0053354E /* PlacesDataSource.m in Sources */,
+				E8E917B51A2CD1EC00A41CDB /* Utility.m in Sources */,
 				3F54B2181A113EA9001B8B21 /* main.m in Sources */,
 				E824A70C1A2563C100B14463 /* CustomAnnotation.m in Sources */,
 				3FDE0A741A1EB9AA0053354E /* FavoritesTableViewController.m in Sources */,

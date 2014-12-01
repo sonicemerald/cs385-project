@@ -14,6 +14,7 @@
 -(NSString *) getValueForAttribute: (NSString *) attr;
 -(void) print;
 
+/*
 -(NSString *) name;
 -(NSString *) address;
 -(NSNumber *) latitude;
@@ -21,7 +22,14 @@
 -(NSString *) description;
 -(BOOL *) favorite;
 -(id) initWithDictionary: (NSDictionary *) dictionary;
+*/
 
+@property (nonatomic) int id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *latitude;
+@property (nonatomic) NSString *longitude;
+@property (nonatomic) NSString *description;
+@property (nonatomic) BOOL * favorite;
 
 
 @end

@@ -52,20 +52,6 @@
     self.mapView.mapType = MKMapTypeStandard;
 
     
-    //Dadabase Stuff
-    
-    //Call the database
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
-    NSString *dir   = [paths objectAtIndex:0];
-    FMDatabase *db = [FMDatabase databaseWithPath:
-                      [dir stringByAppendingPathComponent:@"Location.db"]];
-    
-    //create the table
-    NSString *sql = @"CREATE TABLE IF NOT EXISTS Locations (id INTEGER PRIMARY KEY,title TXT, lat TEXT,long TEXT);";
-    [db open];
-    //execute the query
-    [db executeUpdate:sql];
-    [db close];
 }
 
 - (void)callQuickAdd:(id)sender
