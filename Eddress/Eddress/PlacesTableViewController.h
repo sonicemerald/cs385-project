@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PlacesDataSource.h"
+#import "FMDBDataAccess.h"
+#import "QuickAddViewController.h"
 
-@interface PlacesTableViewController : UITableViewController</*DataSourceReadyForUse,*/ UITableViewDelegate,UITableViewDataSource> //DataSourceReadyForUse not yet implemented in PlacesDataSource.m
+@interface PlacesTableViewController : UITableViewController<QuickAddViewControllerDelegate> //DataSourceReadyForUse not yet implemented in PlacesDataSource.m
+
+@property (nonatomic, strong) NSMutableArray *locations;
+
+-(void) populateLocations;
 
 @end
