@@ -47,7 +47,7 @@
         self.locationToEdit.name = self.nameTextField.text;
         self.locationToEdit.latitude = self.latitude;
         self.locationToEdit.longitude = self.longitude;
-        self.locationToEdit.description = self.descriptionTextField.text;
+        self.locationToEdit.locationDescription = self.descriptionTextField.text;
         
         if(![self validate:self.locationToEdit])
         {
@@ -65,7 +65,7 @@
         location.latitude = self.latitude;
         location.longitude = self.longitude;
         NSLog(@"DESCRIPTION: %@", self.descriptionTextField.text);
-        location.description = self.descriptionTextField.text;
+        location.locationDescription = self.descriptionTextField.text;
         location.favorite = self.favoritesSwitch.on; //UISWitch on is a bool, checks to see if the switch is on or not.
         
         if(![self validate:location])
@@ -112,8 +112,6 @@
         //Shouldn't this just be the name? - Micah
         self.title = [NSString stringWithFormat:@"%@%@%@",self.locationToEdit.name, self.locationToEdit.latitude, self.locationToEdit.longitude];
         self.nameTextField.text = self.locationToEdit.name;
-        self.latitudeTextField.text = self.locationToEdit.latitude;
-        self.longitudeTextField.text = self.locationToEdit.longitude;
         self.descriptionTextField.text = self.locationToEdit.description;
     }
     

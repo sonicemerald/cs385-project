@@ -36,9 +36,6 @@
 //thinking we need these, instead of UITextFields.
 @property (nonatomic, strong) NSString *latitude;
 @property (nonatomic, strong) NSString *longitude;
-
-@property (nonatomic,strong) IBOutlet UITextField *latitudeTextField;
-@property (nonatomic,strong) IBOutlet UITextField *longitudeTextField;
 @property (nonatomic,weak) id<QuickAddViewControllerDelegate> delegate;
 
 -(IBAction) done:(id) sender;

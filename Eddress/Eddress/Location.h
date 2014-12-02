@@ -28,7 +28,7 @@
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
-@property (nonatomic) NSString *description;
+@property (nonatomic) NSString *locationDescription;
 @property (nonatomic) int favorite;
 
 

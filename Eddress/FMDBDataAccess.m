@@ -60,7 +60,9 @@
         location.name = [results stringForColumn:@"name"];
         location.latitude = [results stringForColumn:@"latitude"];
         location.longitude = [results stringForColumn:@"longitude"];
-        location.description = [results stringForColumn:@"description"];
+        NSLog(@"%@",[results stringForColumn:@"description"]);
+        location.locationDescription = [results stringForColumn:@"description"];
+       
         location.favorite = [results intForColumn:@"favorites"];
         NSLog(@"%@", location.latitude);
         [locations addObject:location];
@@ -91,7 +93,7 @@
         location.name = [results stringForColumn:@"name"];
         location.latitude = [results stringForColumn:@"latitude"];
         location.longitude = [results stringForColumn:@"longitude"];
-        location.description = [results stringForColumn:@"description"];
+        location.locationDescription = [results stringForColumn:@"description"];
         location.favorite = [results intForColumn:@"favorites"];
         NSLog(@"%@", location.latitude);
         [locations addObject:location];

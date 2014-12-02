@@ -37,7 +37,7 @@
     locationManager.distanceFilter = 10;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        //[locationManager requestWhenInUseAuthorization];
+        [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
 
