@@ -14,12 +14,9 @@
 @class QuickAddViewController;
 
 @protocol QuickAddViewControllerDelegate<NSObject>
-
 -(void) addQuickAddViewController:(QuickAddViewController *) controller
                    didAddLocation:(Location *) location;
-
 -(void) addQuickAddViewController:(QuickAddViewController *)controller didEditLocation:(Location *)location;
-
 -(void) addQuickAddViewControllerDidCancel:(QuickAddViewController *) controller;
 
 @end
@@ -29,8 +26,17 @@
     
 }
 
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *favoritesSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 @property (nonatomic,strong) Location *locationToEdit;
-@property (nonatomic,strong) IBOutlet UITextField *nameTextField;
+
+//thinking we need these, instead of UITextFields.
+@property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *longitude;
+
 @property (nonatomic,strong) IBOutlet UITextField *latitudeTextField;
 @property (nonatomic,strong) IBOutlet UITextField *longitudeTextField;
 @property (nonatomic,weak) id<QuickAddViewControllerDelegate> delegate;
@@ -39,6 +45,6 @@
 -(IBAction) cancel:(id) sender;
 
 -(BOOL) validate:(Location *) l;
-
+-(id) initWithLatitude:(NSString *)lat andLongitude:(NSString *)longitude;
 
 @end

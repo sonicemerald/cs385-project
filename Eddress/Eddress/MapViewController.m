@@ -57,8 +57,15 @@
 - (void)callQuickAdd:(id)sender
 {
     NSLog(@"You are here");
-    self.quickAdd = [[QuickAddViewController alloc] init];
-    [self.navigationController pushViewController:self.quickAdd animated:YES];
+    self.quickAdd = [[QuickAddViewController alloc] initWithLatitude:self.latitude andLongitude:self.longitude];
+    
+
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"quickAddSB"];
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self presentViewController:vc animated:YES completion:NULL];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
