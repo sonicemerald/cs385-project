@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FavoritesDataSource.h"
 
 @interface FavoritesTableViewController : UITableViewController</*DataSourceReadyForUse,*/ UITableViewDelegate,UITableViewDataSource> //DataSourceReadyForUse not yet implemented in PlacesDataSource.m
 

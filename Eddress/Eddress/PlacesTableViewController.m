@@ -14,14 +14,154 @@
 
 @implementation PlacesTableViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self populateLocations];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void) populateLocations
+{
+    self.locations = [[NSMutableArray alloc] init];
+    
+    FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
+    
+    self.locations = [db getLocations];
+}
+
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"AddLocation"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        QuickAddViewController *addQuickAddViewController = [[navigationController viewControllers] objectAtIndex:0];
+        addQuickAddViewController.delegate = self;
+    }
+    
+    else if([segue.identifier isEqualToString:@"EditLocation"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        QuickAddViewController *addQuickAddViewController = [[navigationController viewControllers] objectAtIndex:0];
+        addQuickAddViewController.delegate = self;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Location *location = [self.locations objectAtIndex:[indexPath row]];
+        addQuickAddViewController.locationToEdit = location;
+        
+    }
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    // Return the number of sections.
+    return 1;
+}
+
+-(void) addQuickAddViewControllerDidCancel:(QuickAddViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void) addQuickAddViewController:(QuickAddViewController *)controller didEditLocation:(Location *)location
+{
+    FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
+    
+    [db updateLocation:location];
+    
+    [self populateLocations];
+    
+    [self.tableView reloadData];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) addQuickAddViewController:(QuickAddViewController *)controller didAddLocation:(Location *)location
+{
+    FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
+    
+    [db insertLocation:location];
+    
+    [self populateLocations];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.locations count] - 1 inSection:0];
+    
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.locations count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"LocationCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    Location *location = [self.locations objectAtIndex:[indexPath row]];
+    
+    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@ %@",location.name,location.latitude,location.longitude]];
+    
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,17 +171,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
