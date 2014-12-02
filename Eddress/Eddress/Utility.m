@@ -12,8 +12,9 @@
 
 +(NSString *) getDatabasePath
 {
-     NSString *databasePath = [(AppDelegate *)[[UIApplication sharedApplication] delegate] databasePath];
-    
+     //NSString *databasePath = [(AppDelegate *)[[UIApplication sharedApplication] delegate] databasePath];
+    NSString *databasePath = @"/Users/joji/Desktop/2014Fall/cs385/Project04/cs385-project/Eddress/Eddress/locations.db";
+    NSLog(databasePath);
     return databasePath; 
 }
 

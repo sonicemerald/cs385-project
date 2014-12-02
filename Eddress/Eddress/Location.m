@@ -16,6 +16,13 @@
 
 @implementation Location
 
+
+-(NSString *) getName
+{
+    return [NSString stringWithFormat:@"%@",self.name];
+}
+
+/*
 -(id) initWithDictionary:(NSDictionary *)dictionary
 {
     if( (self = [super init]) == nil )
@@ -67,5 +74,5 @@
     else //([isFavorite isEqual: @"NO"])
         return NO;
 }
-
+*/
 @end

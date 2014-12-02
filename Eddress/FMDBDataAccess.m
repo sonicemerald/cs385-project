@@ -17,7 +17,7 @@
     
     [db open];
     
-    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE location SET title = '%@', lat = '%@', long = '%@' where id = %d",location.name,location.latitude,location.longitude]];
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE locations SET name = '%@', latitude = '%@', longitude = '%@' where id = %d",location.name,location.latitude,location.longitude, location.id]];
     
     [db close];
     
@@ -32,7 +32,7 @@
     
     [db open];
     
-    BOOL success =  [db executeUpdate:@"INSERT INTO location (title,lat, long) VALUES (?,?,?);",
+    BOOL success =  [db executeUpdate:@"INSERT INTO locations (title,lat, long) VALUES (?,?,?);",
                      location.name,location.latitude,location.longitude, nil];
     
     [db close];
@@ -50,17 +50,19 @@
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:@"SELECT * FROM location"];
+    FMResultSet *results = [db executeQuery:@"SELECT * FROM locations"];
     
     while([results next]) 
-    {
+    {   NSLog(@"you are at getLocaitons");
         Location *location = [[Location alloc] init];
         
         location.id = [results intForColumn:@"id"];
-        location.name = [results stringForColumn:@"title"];
-        location.latitude = [results stringForColumn:@"lat"];
-        location.longitude = [results stringForColumn:@"long"];
-        
+        location.name = [results stringForColumn:@"name"];
+        location.latitude = [results stringForColumn:@"latitude"];
+        location.longitude = [results stringForColumn:@"longitude"];
+        //location.description = [results stringForColumn:@"description"];
+        //location.favorite = [results intForColumn:@"favorite"]; // CRASHING HERE
+
         [locations addObject:location];
         
     }

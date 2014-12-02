@@ -28,7 +28,6 @@
     self.databasePath = [documentDir stringByAppendingPathComponent:self.databaseName];
     
     [self createAndCheckDatabase];
-
     
     
     // Override point for customization after application launch.

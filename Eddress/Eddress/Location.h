@@ -29,7 +29,7 @@
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
 @property (nonatomic) NSString *description;
-@property (nonatomic) BOOL * favorite;
+@property (nonatomic) int favorite;
 
 
 @end
