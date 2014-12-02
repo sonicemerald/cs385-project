@@ -37,7 +37,7 @@
     locationManager.distanceFilter = 10;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [locationManager requestWhenInUseAuthorization];
+        //[locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
 
@@ -127,7 +127,7 @@
     //Pin Stuff
     CustomAnnotation *annotation = [[CustomAnnotation alloc] init];
     annotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    annotation.title = @"Add this Locaton";
+    annotation.title = @"Add this Location";
     
     [self.mapView addAnnotation:annotation];
     [self.mapView selectAnnotation:annotation animated:YES];

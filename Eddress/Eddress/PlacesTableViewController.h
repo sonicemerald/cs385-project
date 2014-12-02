@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "FMDBDataAccess.h"
 #import "QuickAddViewController.h"
 
