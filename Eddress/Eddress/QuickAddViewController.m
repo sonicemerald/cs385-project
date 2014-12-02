@@ -7,6 +7,7 @@
 //
 
 #import "QuickAddViewController.h"
+#import "FMDatabase.h"
 
 @interface QuickAddViewController ()
 
