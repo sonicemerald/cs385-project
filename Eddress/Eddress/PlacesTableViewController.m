@@ -159,7 +159,7 @@
     
     Location *location = [self.locations objectAtIndex:[indexPath row]];
     
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@ %@",location.name,location.latitude,location.longitude]];
+    [[cell textLabel] setText:[NSString stringWithFormat:@"%@",location.name]];
     
     return cell;
 }

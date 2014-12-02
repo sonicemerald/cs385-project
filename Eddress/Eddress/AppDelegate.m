@@ -11,6 +11,7 @@
 #import "FavoritesTableViewController.h"
 #import "PlacesTableViewController.h"
 
+
 @interface AppDelegate()
 
 
@@ -28,7 +29,6 @@
     self.databasePath = [documentDir stringByAppendingPathComponent:self.databaseName];
     
     [self createAndCheckDatabase];
-    
     
     // Override point for customization after application launch.
     MapViewController *mvc = [[MapViewController alloc] init];
@@ -69,16 +69,25 @@
 
 -(void) createAndCheckDatabase
 {
+    NSLog(@"CreateAndCheckDatabase Called");
     BOOL success;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     success = [fileManager fileExistsAtPath:self.databasePath];
     
     if(success) return;
-    
+    NSLog(@"No Success");
     NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.databaseName];
     
     [fileManager copyItemAtPath:databasePathFromApp toPath:self.databasePath error:nil];
+    FMDatabase *database = [FMDatabase databaseWithPath:self.databasePath];
+    [database open];
+    [database executeUpdate:@"CREATE TABLE locations(ID INTEGER PRIMARY KEY NOT NULL, Name CHAR(50) NOT NULL, Description CHAR(255) NOT NULL, Latitude CHAR(10) NOT NULL, Longitude CHAR(10) NOT NULL, Favorites INTEGER NOT NULL)"];
+
+    [database executeUpdate:@"INSERT INTO locations(Name, Description, Latitude, Longitude, Favorites) VALUES('SSU', 'School', '38.339387','-122.674181','1')"];
+    
+    [database close];
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
