@@ -57,7 +57,8 @@
 - (void)callQuickAdd:(id)sender
 {
     NSLog(@"You are here");
-    self.quickAdd = [[QuickAddViewController alloc] init];
+    self.quickAdd = [[QuickAddViewController alloc] initWithLatitude:self.latitude andLongitude:self.longitude];
+    
 
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"quickAddSB"];

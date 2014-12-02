@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pta-Hf-Rfk">
-                                <rect key="frame" x="236" y="447" width="51" height="31"/>
+                                <rect key="frame" x="236" y="428" width="51" height="31"/>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="describe the place here" translatesAutoresizingMaskIntoConstraints="NO" id="yq8-h1-96P">
                                 <rect key="frame" x="16" y="147" width="288" height="273"/>
@@ -38,7 +38,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add to Favorites?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suX-V7-LfJ">
-                                <rect key="frame" x="92" y="452" width="136" height="21"/>
+                                <rect key="frame" x="92" y="433" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,6 +49,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVu-RP-ULi">
+                                <rect key="frame" x="92" y="467" width="112" height="30"/>
+                                <state key="normal" title="Save Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fJE-5C-mId"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W9-9x-eKU">
+                                <rect key="frame" x="204" y="467" width="112" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="C0B-hW-AOu"/>
+                                    <action selector="done:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZZa-z6-QAS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -56,6 +76,7 @@
                         <outlet property="descriptionTextField" destination="yq8-h1-96P" id="v3m-Xp-Oez"/>
                         <outlet property="favoritesSwitch" destination="pta-Hf-Rfk" id="LQH-xz-Itw"/>
                         <outlet property="nameTextField" destination="BNz-Tn-Fp9" id="ojm-Aj-scc"/>
+                        <outlet property="saveButton" destination="dVu-RP-ULi" id="kZe-xP-Mb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

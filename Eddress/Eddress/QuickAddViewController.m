@@ -24,6 +24,17 @@
     return self;
 }
 
+-(id)initWithLatitude:(NSString *)lat andLongitude:(NSString *)longitude
+{
+    self = [super init];
+    if(self){
+        self.longitude = longitude;
+        self.latitude = lat;
+    }
+    return self;
+}
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     return [textField resignFirstResponder];
@@ -34,8 +45,9 @@
     if(self.locationToEdit != nil)
     {
         self.locationToEdit.name = self.nameTextField.text;
-        self.locationToEdit.latitude = self.latitudeTextField.text;
-        self.locationToEdit.longitude = self.longitudeTextField.text;
+        self.locationToEdit.latitude = self.latitude;
+        self.locationToEdit.longitude = self.longitude;
+        self.locationToEdit.description = self.descriptionTextField.text;
         
         if(![self validate:self.locationToEdit])
         {
@@ -50,8 +62,11 @@
     {
         Location *location = [[Location alloc] init];
         location.name = self.nameTextField.text;
-        location.latitude = self.latitudeTextField.text;
-        location.longitude = self.longitudeTextField.text;
+        location.latitude = self.latitude;
+        location.longitude = self.longitude;
+        NSLog(@"DESCRIPTION: %@", self.descriptionTextField.text);
+        location.description = self.descriptionTextField.text;
+        location.favorite = self.favoritesSwitch.on; //UISWitch on is a bool, checks to see if the switch is on or not.
         
         if(![self validate:location])
         {
@@ -94,11 +109,12 @@
     
     if(self.locationToEdit != nil)
     {
-        self.title = [NSString stringWithFormat:@"%@ %@",self.locationToEdit.name,self.locationToEdit.latitude, self.locationToEdit.longitude];
+        //Shouldn't this just be the name? - Micah
+        self.title = [NSString stringWithFormat:@"%@%@%@",self.locationToEdit.name, self.locationToEdit.latitude, self.locationToEdit.longitude];
         self.nameTextField.text = self.locationToEdit.name;
         self.latitudeTextField.text = self.locationToEdit.latitude;
         self.longitudeTextField.text = self.locationToEdit.longitude;
-        
+        self.descriptionTextField.text = self.locationToEdit.description;
     }
     
 }
