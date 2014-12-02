@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMDBDataAccess.h"
+#import "QuickAddViewController.h"
 
 @interface FavoritesTableViewController : UITableViewController</*DataSourceReadyForUse,*/ UITableViewDelegate,UITableViewDataSource> //DataSourceReadyForUse not yet implemented in PlacesDataSource.m
+
+@property (nonatomic, strong) NSMutableArray *locations;
+
+-(void) populateLocations;
 
 @end

@@ -18,6 +18,7 @@
 }
 
 -(NSMutableArray *) getLocations;
+-(NSMutableArray *) getFavorites;
 -(BOOL) insertLocation:(Location *) location;
 -(BOOL) updateLocation:(Location *) location;
 

@@ -42,6 +42,8 @@
     FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
     
     self.locations = [db getLocations];
+    //Location *location = [self.locations objectAtIndex:0];
+    //NSLog(@"PopulateLocations Called: %@", location.name);
 }
 
 
@@ -156,11 +158,13 @@
     static NSString *CellIdentifier = @"LocationCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     Location *location = [self.locations objectAtIndex:[indexPath row]];
     
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@",location.name]];
-    
+    //[[cell textLabel] setText:[NSString stringWithFormat:@"%@",location.name]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",location.name];
     return cell;
 }
 
@@ -175,7 +179,7 @@
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:; forIndexPath:indexPath];
     
     // Configure the cell...
     

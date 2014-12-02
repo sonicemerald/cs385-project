@@ -78,12 +78,11 @@
     i++;
     MKPinAnnotationView* pinView = (MKPinAnnotationView *)
     [self.mapView dequeueReusableAnnotationViewWithIdentifier: reuseID];
-    
     if( ! pinView ) {
         pinView = [[MKPinAnnotationView alloc]
                    initWithAnnotation:annotation reuseIdentifier: reuseID];
         if( [annotation isKindOfClass:[CustomAnnotation class]] )
-            pinView.pinColor = MKPinAnnotationColorGreen; // pin color and other configurations.
+            pinView.pinColor = MKPinAnnotationColorRed; // pin color and other configurations.
         else
             pinView.pinColor = MKPinAnnotationColorRed;
         pinView.animatesDrop = NO;
@@ -128,9 +127,10 @@
     //Pin Stuff
     CustomAnnotation *annotation = [[CustomAnnotation alloc] init];
     annotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    annotation.title = @"You are here!";
+    annotation.title = @"Add this Locaton";
     
     [self.mapView addAnnotation:annotation];
+    [self.mapView selectAnnotation:annotation animated:YES];
 }
 
 

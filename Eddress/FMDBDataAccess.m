@@ -53,16 +53,16 @@
     FMResultSet *results = [db executeQuery:@"SELECT * FROM locations"];
     
     while([results next]) 
-    {   NSLog(@"you are at getLocaitons");
+    {   NSLog(@"you are at getLocations");
         Location *location = [[Location alloc] init];
         
         location.id = [results intForColumn:@"id"];
         location.name = [results stringForColumn:@"name"];
         location.latitude = [results stringForColumn:@"latitude"];
         location.longitude = [results stringForColumn:@"longitude"];
-        //location.description = [results stringForColumn:@"description"];
-        //location.favorite = [results intForColumn:@"favorite"]; // CRASHING HERE
-
+        location.description = [results stringForColumn:@"description"];
+        location.favorite = [results intForColumn:@"favorites"];
+        NSLog(@"%@", location.latitude);
         [locations addObject:location];
         
     }
@@ -71,6 +71,37 @@
   
     return locations;
 
+}
+
+-(NSMutableArray *) getFavorites
+{
+    NSMutableArray *locations = [[NSMutableArray alloc] init];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:@"SELECT * FROM locations WHERE Favorites > 0"];
+    
+    while([results next])
+    {   NSLog(@"you are at getLocations");
+        Location *location = [[Location alloc] init];
+        
+        location.id = [results intForColumn:@"id"];
+        location.name = [results stringForColumn:@"name"];
+        location.latitude = [results stringForColumn:@"latitude"];
+        location.longitude = [results stringForColumn:@"longitude"];
+        location.description = [results stringForColumn:@"description"];
+        location.favorite = [results intForColumn:@"favorites"];
+        NSLog(@"%@", location.latitude);
+        [locations addObject:location];
+        
+    }
+    
+    [db close];
+    
+    return locations;
+    
 }
 
 @end
