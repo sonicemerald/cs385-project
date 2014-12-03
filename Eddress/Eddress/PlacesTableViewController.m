@@ -28,6 +28,9 @@
     
     [self populateLocations];
     
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -172,6 +175,13 @@
     //[[cell textLabel] setText:[NSString stringWithFormat:@"%@",location.name]];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",location.name];
     return cell;
+}
+
+-(void) refreshTableView: (UIRefreshControl *) sender
+{
+    NSLog(@"refreshTableView called");
+    [self.tableView reloadData];
+    [sender endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
