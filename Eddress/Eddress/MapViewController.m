@@ -37,7 +37,7 @@
     locationManager.distanceFilter = 10;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [locationManager requestWhenInUseAuthorization];
+        //[locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
     
@@ -167,7 +167,7 @@
     segmentedControl.alpha = 1.0;
     CGRect segBounds = segmentedControl.bounds;
     CGRect screenBounds = [[UIScreen mainScreen] applicationFrame];
-    segmentedControl.frame = CGRectMake( (screenBounds.size.width - segBounds.size.width) / 2.0 + 15, yValue, segBounds.size.width * 0.9, 2.0 * segBounds.size.height / 3.0);
+    segmentedControl.frame = CGRectMake( (screenBounds.size.width - segBounds.size.width) / 2.0 + 15, yValue, segBounds.size.width * 0.9, 2.0 * segBounds.size.height / 3.0 + 20);
     return segmentedControl;
 }
 

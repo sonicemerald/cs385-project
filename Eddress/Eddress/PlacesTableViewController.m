@@ -168,12 +168,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     Location *location = [self.locations objectAtIndex:[indexPath row]];
     
     //[[cell textLabel] setText:[NSString stringWithFormat:@"%@",location.name]];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",location.name];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", location.locationDescription];
     return cell;
 }
 
