@@ -8,6 +8,8 @@
 
 #import "QuickAddViewController.h"
 #import "FMDatabase.h"
+#import "MapViewController.h"
+#import "FMDBDataAccess.h"
 
 @interface QuickAddViewController ()
 
@@ -55,7 +57,7 @@
             return;
         }
         
-        [self.delegate addQuickAddViewController:self didEditLocation:self.locationToEdit];
+        [self addQuickAddViewController:self didEditLocation:self.locationToEdit];
     }
     
     else
@@ -66,7 +68,7 @@
         location.longitude = self.longitude;
         NSLog(@"DESCRIPTION: %@", self.descriptionTextField.text);
         location.locationDescription = self.descriptionTextField.text;
-        location.favorite = self.favoritesSwitch.on; //UISWitch on is a bool, checks to see if the switch is on or not.
+        location.favorite = [[NSNumber numberWithBool:self.favoritesSwitch.on]intValue]; //UISWitch on is a bool, checks to see if the switch is on or not.
         
         if(![self validate:location])
         {
@@ -74,7 +76,7 @@
             return;
         }
         
-        [self.delegate addQuickAddViewController:self didAddLocation:location];
+        [self addQuickAddViewController:self didAddLocation:location];
     }
     
 }
@@ -89,10 +91,6 @@
     return YES;
 }
 
--(IBAction)cancel:(id)sender
-{
-    [self.delegate addQuickAddViewControllerDidCancel:self];
-}
 
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -106,6 +104,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     if(self.locationToEdit != nil)
     {
@@ -114,7 +113,6 @@
         self.nameTextField.text = self.locationToEdit.name;
         self.descriptionTextField.text = self.locationToEdit.description;
     }
-    
 }
 
 
@@ -136,6 +134,33 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void) addQuickAddViewControllerDidCancel:(QuickAddViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void) addQuickAddViewController:(QuickAddViewController *)controller didEditLocation:(Location *)location
+{
+    FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
+    
+    [db updateLocation:location];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) addQuickAddViewController:(QuickAddViewController *)controller didAddLocation:(Location *)location
+{
+    FMDBDataAccess *db = [[FMDBDataAccess alloc] init];
+    
+    [db insertLocation:location];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
 
 /*
 #pragma mark - Navigation

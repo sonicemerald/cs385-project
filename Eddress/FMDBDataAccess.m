@@ -32,14 +32,12 @@
     
     [db open];
     
-    BOOL success =  [db executeUpdate:@"INSERT INTO locations (title,lat, long) VALUES (?,?,?);",
-                     location.name,location.latitude,location.longitude, nil];
-    
+    NSString *q = [NSString stringWithFormat:@"INSERT INTO locations (Name, Description, Latitude, Longitude, Favorites) VALUES ('%@','%@',%@,%@,%d)", location.name, location.locationDescription, location.latitude,location.longitude, location.favorite];
+    NSLog(@"%@", q);
+    BOOL success = [db executeUpdate:q];
     [db close];
-    
-    return success; 
-    
-    return YES; 
+    NSLog(@"SUCESS!");
+    return success;
 }
 
 -(NSMutableArray *) getLocations

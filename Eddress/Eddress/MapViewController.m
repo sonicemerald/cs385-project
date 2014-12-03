@@ -40,6 +40,7 @@
         //[locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
+    
 
     
     //Map Stuff
@@ -51,22 +52,40 @@
     
     self.mapView.mapType = MKMapTypeStandard;
 
-    
 }
 
 - (void)callQuickAdd:(id)sender
 {
     NSLog(@"You are here");
-    self.quickAdd = [[QuickAddViewController alloc] initWithLatitude:self.latitude andLongitude:self.longitude];
+//    self.quickAdd = [[QuickAddViewController alloc] initWithLatitude:self.latitude andLongitude:self.longitude];
     
 
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"quickAddSB"];
+    QuickAddViewController *vc = [sb instantiateViewControllerWithIdentifier:@"quickAddSB"];
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-
+    vc.longitude = self.longitude;
+    vc.latitude = self.latitude;
+    
     [self.navigationController pushViewController:vc animated:YES];
 //    [self presentViewController:vc animated:YES completion:NULL];
 }
+
+-(NSString *) getCurrentLat{
+    return self.latitude;
+}
+
+-(NSString *) getCurrentLong{
+    return self.longitude;
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    NSString *identifier = [segue identifier];
+//    if ([identifier isEqualToString:@"quickAdd"]) {
+//    QuickAddViewController *nextVC = (QuickAddViewController *)[segue destinationViewController];
+//    nextVC.longitude = self.longitude;
+//    nextVC.latitude = self.latitude;
+//    }
+//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
