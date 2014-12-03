@@ -37,7 +37,7 @@
     locationManager.distanceFilter = 10;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        //[locationManager requestWhenInUseAuthorization];
+        [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
     
@@ -48,7 +48,7 @@
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height-29)];
     self.mapView.delegate = self;
     [self.view insertSubview:self.mapView atIndex:0];
-    self.mapView.showsUserLocation = YES; //If set, will track location of device
+    self.mapView.showsUserLocation = NO; //If set, will track location of device
     
     self.mapView.mapType = MKMapTypeStandard;
 
@@ -108,6 +108,8 @@
         pinView.canShowCallout = YES;
         if( [annotation isKindOfClass: [CustomAnnotation class]] ) {  // call quick add
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            UIImage* buttonImage = [UIImage imageNamed:@"plus.png"];
+            [rightButton setImage:buttonImage forState:UIControlStateNormal];
             [rightButton addTarget:self
                             action:@selector(callQuickAdd:)
                   forControlEvents:UIControlEventTouchUpInside];
