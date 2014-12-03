@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong) NSMutableArray *locations;
 
--(void) populateLocations;
+-(void) populateFavorites;
 
 @end
